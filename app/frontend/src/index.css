@@ -1,0 +1,245 @@
+"@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@200;300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 39 47% 98%;
+  --foreground: 25 18% 14%;
+  --card: 39 47% 96%;
+  --card-foreground: 25 18% 14%;
+  --popover: 39 47% 98%;
+  --popover-foreground: 25 18% 14%;
+  --primary: 12 70% 62%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 33 100% 45%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 35 30% 92%;
+  --muted-foreground: 25 12% 38%;
+  --accent: 218 41% 25%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 50% 39%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 32 27% 78%;
+  --input: 32 27% 78%;
+  --ring: 12 70% 62%;
+  --radius: 0.375rem;
+
+  --mr-bg: #FDFBF7;
+  --mr-surface: #F4EFE6;
+  --mr-surface-2: #EAE3D6;
+  --mr-terracotta: #E2725B;
+  --mr-saffron: #E48900;
+  --mr-indigo: #253A5A;
+  --mr-charcoal: #2C241E;
+  --mr-text-2: #5C5046;
+  --mr-border: #D5C8B8;
+  --mr-success: #4C6B53;
+  --mr-error: #993333;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--mr-bg);
+  color: var(--mr-charcoal);
+  font-family: 'Outfit', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--mr-terracotta);
+  color: #fff;
+}
+
+/* Subtle paper grain background utility */
+.mr-grain {
+  background-image:
+    radial-gradient(rgba(44,36,30,0.045) 1px, transparent 1px),
+    radial-gradient(rgba(44,36,30,0.03) 1px, transparent 1px);
+  background-size: 22px 22px, 7px 7px;
+  background-position: 0 0, 11px 11px;
+}
+
+.mr-noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.17 0 0 0 0 0.14 0 0 0 0 0.12 0 0 0 0.18 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\");
+  opacity: 0.55;
+  mix-blend-mode: multiply;
+}
+
+.font-serif-display {
+  font-family: 'Cormorant Garamond', serif;
+  font-feature-settings: \"lnum\", \"ss01\";
+}
+
+.font-sans-body {
+  font-family: 'Outfit', system-ui, sans-serif;
+}
+
+.overline {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+/* Pattachitra-inspired hairline divider */
+.mr-divider {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--mr-terracotta);
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+}
+.mr-divider::before, .mr-divider::after {
+  content: '';
+  width: 56px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.55;
+}
+
+/* Cinematic image card */
+.mr-img-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+}
+.mr-img-frame img {
+  transition: transform 900ms cubic-bezier(0.2, 0.7, 0.2, 1), filter 900ms;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.mr-img-frame:hover img {
+  transform: scale(1.06);
+  filter: saturate(1.05);
+}
+
+/* Buttons */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--mr-terracotta);
+  color: #fff;
+  padding: 0.85rem 1.6rem;
+  border-radius: 999px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  transition: all 240ms ease;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+.btn-primary:hover {
+  background: #c75e48;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px -12px rgba(226, 114, 91, 0.55);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--mr-charcoal);
+  padding: 0.85rem 1.6rem;
+  border-radius: 999px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  border: 1px solid var(--mr-border);
+  background: transparent;
+  cursor: pointer;
+  transition: all 240ms ease;
+}
+.btn-ghost:hover {
+  background: var(--mr-surface);
+  border-color: var(--mr-charcoal);
+}
+
+.link-underline {
+  position: relative;
+  display: inline-block;
+}
+.link-underline::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 100%; bottom: -3px;
+  height: 1px;
+  background: currentColor;
+  transition: right 280ms ease;
+}
+.link-underline:hover::after { right: 0; }
+
+/* Sticky header glass */
+.mr-glass {
+  background: rgba(253, 251, 247, 0.78);
+  backdrop-filter: blur(18px) saturate(1.1);
+  -webkit-backdrop-filter: blur(18px) saturate(1.1);
+  border-bottom: 1px solid rgba(213, 200, 184, 0.6);
+}
+
+/* Scrollbar restyle (subtle) */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--mr-surface); }
+::-webkit-scrollbar-thumb { background: var(--mr-border); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--mr-text-2); }
+
+/* Marquee */
+@keyframes mr-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.mr-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: mr-marquee 38s linear infinite;
+}
+
+/* Stagger entrance */
+@keyframes mr-rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.mr-rise { animation: mr-rise 800ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+
+@layer base {
+    [data-debug-wrapper=\"true\"] {
+        display: contents !important;
+    }
+    [data-debug-wrapper=\"true\"] > * {
+        margin-left: inherit;
+        margin-right: inherit;
+        margin-top: inherit;
+        margin-bottom: inherit;
+        padding-left: inherit;
+        padding-right: inherit;
+        padding-top: inherit;
+        padding-bottom: inherit;
+        column-gap: inherit;
+        row-gap: inherit;
+        gap: inherit;
+        border-left-width: inherit;
+        border-right-width: inherit;
+        border-top-width: inherit;
+        border-bottom-width: inherit;
+    }
+}
+"
